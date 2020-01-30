@@ -1,6 +1,6 @@
 # geb-spock-artifactory
 
-## Upload files using below command -
+## Upload files to local artifactory using below command -
 
 curl -uadmin:ULcht3WGeHKCWqR -T src/test/resources/bookstore.war "
 http://localhost:8081/artifactory/gradle-dev-local/Bookstore.war"
