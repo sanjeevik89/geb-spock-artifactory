@@ -14,7 +14,8 @@ __Note__: All paths relative to directory: artifactory-app-ui-automation
 
 + Go to the artifactory-app-ui-automation directory and run the automated spec from the command line:
   - cd artifactory-app-ui-automation
-  - gradlew chromeTest -Denv=test
+  - gradlew chromeTest -Denv=test_success 
+  - gradlew chromeTest -Denv=test_failure
 
 + The above runs the artifactory automated tests in Chrome. Using the configuration i.e., url, username, password etc supplied under the "test" environment.
 
