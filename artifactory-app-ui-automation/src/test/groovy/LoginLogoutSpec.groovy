@@ -42,7 +42,7 @@ class LoginLogoutSpec extends GebReportingSpec {
         
         then: "Enter valid Login & Password"
         loginPage.enterLoginDetails(username, password)
-        report("Artifactory Login Page with username and password")
+        // report("Artifactory Login Page with username and password")
         loginPage.clickOnLoginButton()
     
 
@@ -58,8 +58,8 @@ class LoginLogoutSpec extends GebReportingSpec {
         when:"Search Artifact"
         landingPage.clickOnSearch(artifact)
 
-        then: "take a screenshot"
-        report("Artifact entered in search box")
+        then: "wait for couple of secs"
+        // report("Artifact entered in search box")
         Thread.sleep 2000
 
         and:"Go to searchPage"
@@ -73,15 +73,15 @@ class LoginLogoutSpec extends GebReportingSpec {
         searchPage.clickOnHome()
     }
 
-    // def "Logout"() {
-    //     given: "You are on landing page"
-    //     LandingPage landingPage = at LandingPage
+    def "Logout"() {
+        given: "You are on landing page"
+        LandingPage landingPage = at LandingPage
 
-    //     when: "You click on logout"
-    //     landingPage.clickOnLogout()
+        when: "You click on logout"
+        landingPage.clickOnLogout()
 
-    //     then: "Check you are back on the Home Page"
-    //     at HomePage
-    //     report("Back to Home Page after logout")
-    // }
+        then: "Check you are back on the Home Page"
+        at HomePage
+        // report("Back to Home Page after logout")
+    }
 }
