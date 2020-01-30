@@ -6,18 +6,17 @@
 
 ## Running the examples
 
-### Twitter login and logout example:
+### Artifactory login and logout example:
 
-__Note__: All paths relative to directory: twitter-app-ui-automation
+__Note__: All paths relative to directory: artifactory-app-ui-automation
 
 + Update the src\test\resources\LoginFlowConfig.groovy file with the username / password. 
-+ For the username, do not use the email but the twitter handle without the @ sign in the front. E.g. mycooltwitterhandle
 
-+ Go to the twitter-app-ui-automation directory and run the automated spec from the command line:
-  - cd twitter-app-ui-automation
++ Go to the artifactory-app-ui-automation directory and run the automated spec from the command line:
+  - cd artifactory-app-ui-automation
   - gradlew chromeTest -Denv=test
 
-+ The above runs the twitter automated tests in Chrome. Using the configuration i.e., url, username, password etc supplied under the "test" environment.
++ The above runs the artifactory automated tests in Chrome. Using the configuration i.e., url, username, password etc supplied under the "test" environment.
 
 ## Changing environments
 + You can change the environment (env) to use for e.g. to "prod" env, by changing the command-line to use __-Denv=prod__ 
