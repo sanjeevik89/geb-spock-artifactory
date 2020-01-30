@@ -1,25 +1,10 @@
-/*
- * Copyright (c) 2018. https://automationschool.com
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 import geb.Browser
 import geb.spock.GebReportingSpec
-import pages.common.LoginPage
 import pages.base.ArtifactoryPage
 import pages.common.HomePage
 import pages.common.LandingPage
+import pages.common.LoginPage
+import pages.common.SearchPage
 import spock.lang.Shared
 import spock.lang.Stepwise
 
@@ -28,12 +13,14 @@ class LoginLogoutSpec extends GebReportingSpec {
     @Shared cfg
     @Shared username
     @Shared password
+    @Shared artifact
 
     def setupSpec() {
         cfg = ConfigReader.getConfiguration()
         ArtifactoryPage.config = cfg;
         username = cfg.loginFlowConfig.username
         password = cfg.loginFlowConfig.password
+        artifact = cfg.searchFlowConfig.search_artifact
     }
 
     def cleanupSpec() {
@@ -64,15 +51,37 @@ class LoginLogoutSpec extends GebReportingSpec {
         report("Artifactory Landing Page for username - " + username)
     }
 
-    def "Logout"() {
+    def "Search"() {
         given: "You are on landing page"
         LandingPage landingPage = at LandingPage
 
-        when: "You click on logout"
-        landingPage.clickOnLogout()
+        when:"Search Artifact"
+        landingPage.clickOnSearch(artifact)
 
-        then: "Check you are back on the Home Page"
-        at HomePage
-        report("Back to Home Page after logout")
+        then: "take a screenshot"
+        report("Artifact entered in search box")
+        Thread.sleep 2000
+
+        and:"Go to searchPage"
+        SearchPage searchPage = at SearchPage
+        Thread.sleep 2000
+
+        when:"Validate artifact present"
+        report("Artifactory search Page for artifact - " + artifact)
+
+        then: "Go to Landing Page"
+        searchPage.clickOnHome()
     }
+
+    // def "Logout"() {
+    //     given: "You are on landing page"
+    //     LandingPage landingPage = at LandingPage
+
+    //     when: "You click on logout"
+    //     landingPage.clickOnLogout()
+
+    //     then: "Check you are back on the Home Page"
+    //     at HomePage
+    //     report("Back to Home Page after logout")
+    // }
 }
