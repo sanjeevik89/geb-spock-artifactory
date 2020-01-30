@@ -42,13 +42,13 @@ class LoginLogoutSpec extends GebReportingSpec {
         
         then: "Enter valid Login & Password"
         loginPage.enterLoginDetails(username, password)
-        // report("Artifactory Login Page with username and password")
+        report("Artifactory Login Page with username and password")
         loginPage.clickOnLoginButton()
     
 
         then: "Check you are on landing page"
         at LandingPage
-        report("Artifactory Landing Page for username - " + username)
+        // report("Artifactory Landing Page for username - " + username)
     }
 
     def "Search"() {
