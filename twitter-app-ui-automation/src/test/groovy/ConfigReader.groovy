@@ -25,7 +25,7 @@ class ConfigReader {
 			environ = env
 		}
 
-		def config = new ConfigSlurper(environ).parse(new File('src//test//resources//TwitterConfig.groovy').toURI().toURL())
+		def config = new ConfigSlurper(environ).parse(new File('src//test//resources//ArtifactoryConfig.groovy').toURI().toURL())
 		def loginFlowConfig = new ConfigSlurper(environ).parse(new File('src//test//resources//LoginFlowConfig.groovy').toURI().toURL())
 		config.loginFlowConfig = loginFlowConfig
 		config

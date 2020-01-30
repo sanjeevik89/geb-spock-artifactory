@@ -15,18 +15,18 @@
  */
 
 package pages.common
-import pages.base.TwitterPage
+import pages.base.ArtifactoryPage
 
-class LandingPage extends TwitterPage {
+class LandingPage extends ArtifactoryPage {
 
     static url = ""
 
     static content = {
-        screenNameLink(wait: true) { $('.DashboardProfileCard-screennameLink') }
+        screenNameLink(wait: true) { $('a.navbar-link.username-header.ng-binding') }
     }
 
     static at = {
         screenNameLink.isDisplayed()
-        screenNameLink.text().toLowerCase().contains("@" + config.loginFlowConfig.username.toLowerCase())
+        screenNameLink.text().toLowerCase().contains(config.loginFlowConfig.username.toLowerCase())
     }
 }

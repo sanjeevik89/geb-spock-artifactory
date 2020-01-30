@@ -14,32 +14,32 @@
  *    limitations under the License.
  */
 
-package pages
+package pages.common
 
-import pages.base.TwitterPage
+import pages.base.ArtifactoryPage
 
-class LoginPage extends TwitterPage {
+class LoginPage extends ArtifactoryPage {
 
-    static url = "login"
-
-    private static final FORM_TITLE = "Log in to Twitter".toUpperCase()
+    static url = "artifactory/webapp/#/login"
 
     static content = {
-        loginFormContainer() {$('.signin-wrapper')}
-        loginFormTitle() {loginFormContainer.find('h1').first()}
-        loginForm()  { loginFormContainer.find('form.js-signin') }
-        usernameField()  { loginForm.find('.js-username-field') }
-        passwordField()  { loginForm.find('.js-password-field') }
-        loginButton() {loginForm.find('.submit')}
+        loginBlock()  { $('div.center-login.ng-scope') }
+        loginButtonsContainer()  { loginBlock.find('.login-button-bar.ng-scope') }
+        loginButton() { loginButtonsContainer.find('button#login.btn.btn-primary.pull-right') }
+        usernameField() { loginBlock.find('#user') }
+        passwordField() { loginBlock.find('#password') }
     }
 
     static at = {
-        loginFormTitle.text().toUpperCase().contains(FORM_TITLE)
-        browser.getCurrentUrl().toLowerCase().startsWith(config.urlWithoutForwardSlash + "/login")
+        loginBlock.isDisplayed()
+        loginButtonsContainer.isDisplayed()
         loginButton.isDisplayed()
+        usernameField.isDisplayed()
+        passwordField.isDisplayed()
     }
 
-    def enterLoginPassword(login, password){
+
+    def enterLoginDetails(login, password){
         usernameField.value(login)
         passwordField.value(password)
     }

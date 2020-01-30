@@ -20,11 +20,11 @@ import geb.Module
 
 class HeaderModule extends Module {
     static content = {
-        globalActions (required: false) {$(".js-topbar .global-nav .js-global-actions")}
-        navigationExtras (required: false) {$(".js-topbar .global-nav .nav-extras")}
-        navigationRightActions (required: false) { navigationExtras.find('.right-actions')}
-        currentUserDropdown (required: false, wait: true) { navigationRightActions.find('#user-dropdown')}
-        logoutButton (required: false, wait: true) { currentUserDropdown.find('.js-logout-button')}
+        navBar (required: true) {$("nav#jf-header")}
+        navBarRight (required: true) { navBar.find('div.navbar-right')}
+        currentUserDropdownArrow (required: true, wait: true) { navBarRight.find('i.action-icon.icon.icon-small-arrow-down')}
+        currentUserDropdown (required: false, wait: true) { navBarRight.find('dropdown-menu.dropdown-menu-right.actions-dropdown.text-left') }
+        logoutButton (required: false, wait: true) { currentUserDropdown.find('li.action-item.dynamic-action.ng-scope.menu-item-icon-logout')}
     }
 
     def clickOnLogout(){

@@ -14,9 +14,10 @@
  *    limitations under the License.
  */
 
+import geb.Browser
 import geb.spock.GebReportingSpec
-import pages.LoginPage
-import pages.base.TwitterPage
+import pages.common.LoginPage
+import pages.base.ArtifactoryPage
 import pages.common.HomePage
 import pages.common.LandingPage
 import spock.lang.Shared
@@ -30,7 +31,7 @@ class LoginLogoutSpec extends GebReportingSpec {
 
     def setupSpec() {
         cfg = ConfigReader.getConfiguration()
-        TwitterPage.config = cfg;
+        ArtifactoryPage.config = cfg;
         username = cfg.loginFlowConfig.username
         password = cfg.loginFlowConfig.password
     }
@@ -43,26 +44,24 @@ class LoginLogoutSpec extends GebReportingSpec {
     }
 
     def "Login with valid username and password"() {
-        given: "You are on twitter homepage"
-        to HomePage
-        report("Twitter Home Page")
-        HomePage homePage = at HomePage
+        given: "You are on Artifactory homepage"
+        to HomePage        
+        HomePage homePage = at HomePage;
+        report("Artifactory Login Page")
+       
 
-        when: "You click on Login button"
-        homePage.clickOnLogin()
-
-        then: "Check you are on login page"
+        when: "Check you are on login page"
         LoginPage loginPage = at LoginPage;
-        report("Twitter Login Page")
-
-        when: "Enter valid Login & Password"
-        loginPage.enterLoginPassword(username, password)
-        report("Twitter Login Page with username and password")
+        
+        then: "Enter valid Login & Password"
+        loginPage.enterLoginDetails(username, password)
+        report("Artifactory Login Page with username and password")
         loginPage.clickOnLoginButton()
+    
 
         then: "Check you are on landing page"
         at LandingPage
-        report("Twitter Landing Page for username - " + username)
+        report("Artifactory Landing Page for username - " + username)
     }
 
     def "Logout"() {

@@ -14,25 +14,16 @@
  *    limitations under the License.
  */
 
-package pages.base
-
-import geb.Page
-import modules.HeaderModule
-
-abstract class TwitterPage extends Page {
-
-    static ConfigObject config
-
-    static at = {
-        //we will check this for all twitter pages derived from this page
-        browser.getCurrentUrl().toLowerCase().startsWith(config.urlWithoutForwardSlash)
+environments {
+    test {
+        urlWithoutForwardSlash = "http://localhost:8081"
+        urlWithoutForwardSlash = urlWithoutForwardSlash.toLowerCase()
+        urlWithForwardSlash = urlWithoutForwardSlash + "/"
     }
 
-    static content = {
-        twitterHeader (required: false, wait: true) { module HeaderModule }
-    }
-
-    def clickOnLogout(){
-        twitterHeader.clickOnLogout()
+    prod {
+        urlWithoutForwardSlash = "http://prod.artifactory.ep:8081/"
+        urlWithoutForwardSlash = urlWithoutForwardSlash.toLowerCase()
+        urlWithForwardSlash = urlWithoutForwardSlash + "/"
     }
 }

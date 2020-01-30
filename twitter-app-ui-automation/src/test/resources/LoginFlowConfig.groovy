@@ -16,14 +16,14 @@
 
 environments {
     test {
-		//For the username, do not use the email but the twitter handle without the @ sign in the front.
-        username = "mycooltesttwitterhandle"
-        password = "dummytestpassword"
+		//For the username, do not use the email but the artifactory user without the @ sign in the front.
+        username = "admin"
+        password = "Freedom@360"
     }
 
     prod {
-		//For the username, do not use the email but the twitter handle without the @ sign in the front.
-        username = "dummyprodtwitterhandle"
+		//For the username, do not use the email but the artifactory user without the @ sign in the front.
+        username = "dummyproduser"
         password = "dummyprodpassword"
     }
 }

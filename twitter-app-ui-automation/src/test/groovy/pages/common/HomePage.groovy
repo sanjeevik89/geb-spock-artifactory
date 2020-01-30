@@ -16,24 +16,34 @@
 
 package pages.common
 
-import pages.base.TwitterPage
+import pages.base.ArtifactoryPage
 
-class HomePage extends TwitterPage {
+class HomePage extends ArtifactoryPage {
 
-    static url = ""
+    static url = "artifactory/webapp/#/login"
 
     static content = {
-        signinSignupBlock()  { $('.StaticLoggedOutHomePage') }
-        signinSignupButtonsContainer()  { signinSignupBlock.find('.StaticLoggedOutHomePage-buttons') }
-        signinButton() { signinSignupButtonsContainer.find('.StaticLoggedOutHomePage-buttonLogin')}
-        signupButton() { signinSignupButtonsContainer.find('.StaticLoggedOutHomePage-buttonSignup')}
+        loginBlock()  { $('div.center-login.ng-scope') }
+        loginButtonsContainer()  { loginBlock.find('.login-button-bar.ng-scope') }
+        loginButton() { loginButtonsContainer.find('button#login.btn.btn-primary.pull-right')}
+        usernameField() { loginBlock.find('#user')}
+        passwordField() { loginBlock.find('#password')}
     }
 
     static at = {
-        signinButton.isDisplayed()
+        loginBlock.isDisplayed()
+        loginButtonsContainer.isDisplayed()
+        loginButton.isDisplayed()
+        usernameField.isDisplayed()
+        passwordField.isDisplayed()
     }
 
-    def clickOnLogin(){
-        signinButton.click()
+    def enterLoginDetails(username, password){
+        usernameField.value(username)
+        passwordField.value(password)
+    }
+
+    def clickOnLoginButton(){
+        loginButton.click()
     }
 }
