@@ -1,10 +1,10 @@
-# Git repo: geb-and-spock-automation-examples 
-+ Groovy-based Geb and Spock automation examples. 
+# geb-and-spock-artifactory-automation
++ Groovy-based Geb and Spock automation. 
 + Please run automation tests responsibly. You may use the code provided in this repository only to learn Geb and Spock.
 + Latest Geb Manual is your best source for documentation : __[Latest Geb Manual](http://www.gebish.org/manual/current/)__
 + Licensed under __[the Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)__
 
-## Running the examples
+## Running the tests
 
 ### Artifactory login and logout example:
 
